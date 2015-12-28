@@ -17,6 +17,17 @@ posts = Post.all
   )
 end
 
+# Create idempotent data
+coffee_post = Post.find_or_create_by!(
+  title: "Coffee: A Love Story",
+  body: "You know how sometimes you just can't pry open your eyes in the morning? The only thing that helps is coffee. The end."
+)
+
+Comment.find_or_create_by!(
+  body: "I know exactly how you feel! #coffeerules",
+  post: coffee_post
+)
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
