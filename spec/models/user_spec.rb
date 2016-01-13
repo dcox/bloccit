@@ -41,6 +41,25 @@ RSpec.describe User, type: :model do
     it "should be an invalid user due to incorrectly formatted email" do
       expect(user_with_invalid_email_format).to_not be_valid
     end
+  end
 
+  describe "uppercased email" do
+    let(:user_with_uppercase_email) { User.new(name: "John Doe", email: "JOHNDOE@HOTMAIL.COM", password: "password") }
+
+    it "should downcase the user's email address" do
+      user_with_uppercase_email.save!
+      expect(user_with_uppercase_email.email).to eq("johndoe@hotmail.com")
+    end
+  end
+
+  describe "lowercased user" do
+    let(:user_with_lowercase_name) { User.new(name: "david bowie", email: "major-tom@ground-control.com", password: "password") }
+
+    it "should capitalize the first letter of the user's first and last names" do
+      user_with_lowercase_name.save!
+      expect(user_with_lowercase_name.name).to eq("David Bowie")
+      # post :create, id: user_with_lowercase_name.id
+      # expect(assigns(:user_with_lowercase_name.name)).to eq("David Bowie")
+    end
   end
 end
