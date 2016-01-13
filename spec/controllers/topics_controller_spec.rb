@@ -64,6 +64,20 @@ RSpec.describe TopicsController, type: :controller do
       post :create, {topic: {name: RandomData.random_sentence, description: RandomData.random_paragraph}}
       expect(response).to redirect_to Topic.last
     end
+
+    it "sets flash[:alert] when topic is invalid" do
+      invalid_topic_name = "Hi"
+      invalid_topic_description = ""
+      post :create, {topic: {name: invalid_topic_name, description: invalid_topic_description}}
+      expect(flash[:alert]).to eq "Error creating topic. Please try again."
+    end
+
+    it "renders the new template when topic is invalid" do
+      invalid_topic_name = "Hi"
+      invalid_topic_description = ""
+      post :create, {topic: {name: invalid_topic_name, description: invalid_topic_description}}
+      expect(response).to render_template(:new)
+    end
   end
 
   describe "GET edit" do
@@ -106,6 +120,28 @@ RSpec.describe TopicsController, type: :controller do
 
       put :update, id: my_topic.id, topic: { name: new_name, description: new_description }
       expect(response).to redirect_to my_topic
+    end
+
+    it "places a warning in flash[:alert] when topic is invalid" do
+      invalid_topic_name = "Hi"
+      invalid_topic_description = ""
+
+      get :edit, {id: my_topic.id}
+      topic_instance = assigns(:topic)
+
+      post :update, id: my_topic.id, topic: { name: invalid_topic_name, description: invalid_topic_description }
+      expect(flash[:alert]).to eq "Error updating topic. Please try again."
+    end
+
+    it "renders the edit view when a topic is invalid" do
+      invalid_topic_name = "Hi"
+      invalid_topic_description = ""
+
+      get :edit, {id: my_topic.id}
+      topic_instance = assigns(:topic)
+
+      post :update, id: my_topic.id, topic: { name: invalid_topic_name, description: invalid_topic_description }
+      expect(response).to render_template(:edit)
     end
   end
 
