@@ -1,0 +1,7 @@
+
+<h1>Are these values correct?</h1>
+<h2>Name: <%= @user.name %></h2>
+<h2>Email: <%= @user.email %></h2>
+
+<%= button_to "Yes", {:controller => "users", :action => "create", :params => params}, class: 'btn btn-success' %>
+<%= button_to "No", options = {:controller => "users", :action => "new", }, html_options = { :method => :get, :class => 'btn' } %>
