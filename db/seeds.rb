@@ -10,9 +10,21 @@ include RandomData
 end
 topics = Topic.all
 
+# Create users
+
+5.times do
+  User.create!(
+    name: RandomData.random_name,
+    email: RandomData.random_email,
+    password: RandomData.random_sentence
+  )
+end
+users = User.all
+
 # Create posts
 50.times do
   Post.create!(
+    user: users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,
     body: RandomData.random_paragraph
@@ -28,7 +40,16 @@ posts = Post.all
   )
 end
 
+# Add myself
+
+user = User.first
+user.update_attributes!(
+  email: "dcox@zendesk.com",
+  password: "password"
+)
+
 puts "Seed finished"
 puts "#{Topic.count} topics created"
+puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
