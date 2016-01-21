@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
+
+  scope :ordered_by_title, -> { order('title') }
+  scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
+
   belongs_to :topic
   belongs_to :user
   has_many :comments, dependent: :destroy
