@@ -21,6 +21,19 @@ topics = Topic.all
 end
 users = User.all
 
+admin = User.create!(
+  name: "Admin User",
+  email: "admin@example.com",
+  password: "hello world",
+  role: 'admin'
+)
+
+member = User.create!(
+  name: "Member User",
+  email: "member@example.com",
+  password: "hello world"
+)
+
 # Create posts
 50.times do
   Post.create!(

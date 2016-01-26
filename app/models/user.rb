@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
+  before_save { self.role ||= :member }
 
   has_many :posts
 
@@ -12,4 +13,6 @@ class User < ActiveRecord::Base
   validates :email, length: { minimum: 3, maximum: 100 }, presence: true, uniqueness: { case_sensitive: false }, format: { with: EMAIL_REGEX }
 
   has_secure_password
+
+  enum role: [:member, :admin]
 end
