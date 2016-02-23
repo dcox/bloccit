@@ -83,7 +83,7 @@ RSpec.describe Post, type: :model do
   describe "create_vote callback" do 
 
     it "triggers create_vote on create" do
-      post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      post = Post.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user, topic: topic)
       expect(post).to receive(:create_vote)
       post.save
     end
