@@ -56,3 +56,4 @@ end
 
 gem 'bcrypt'
 gem 'figaro'
+gem 'factory_girl_rails', '~> 4.0'
