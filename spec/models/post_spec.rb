@@ -81,9 +81,12 @@ RSpec.describe Post, type: :model do
   end
 
   describe "create_vote callback" do 
-    it "triggers create_vote on save" do
-      expect(post).to receive(:create_vote).at_least(:once)
-      post.save
+
+    it "triggers create_vote on create" do
+      my_post = Post.new(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+
+      expect(my_post).to receive(:create_vote).at_least(:once)
+      my_post.create
     end
   end
 
