@@ -1,0 +1,14 @@
+<div class="media">
+  <div class="media-body">
+    <% @user.favorites.each do |fave| %>
+      <% avatar_url = fave.post.user.avatar_url(48) %>
+      <h4 class="media-heading">
+        <%= fave.post.title %>
+        <small>
+          By <%= fave.post.user.name %>
+          <%= image_tag avatar_url, class: 'media-object' %>
+        </small>
+      </h4>
+    <% end %>
+  </div>
+</div>

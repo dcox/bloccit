@@ -19,9 +19,19 @@
   </div>
 </div>
 
+<% if detect_posts(@user) %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% else %>
+  <h2>This user has not created any posts yet.</h2>
+<% end %>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% if detect_comments(@user) %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% else %>
+  <h2>This user has not made any comments yet.</h2>
+<% end %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<h2>Favorites</h2>
+<%= render partial: 'favorites/favorites_list', locals: { user: @user } %>
