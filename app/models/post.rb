@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
   private
   def favorite_new_post
     Favorite.create!(post: self, user: self.user)
-    FavoriteMailer.new_post(self.user, self)
+    FavoriteMailer.new_post(self.user, self).deliver_now
   end
   
 end
