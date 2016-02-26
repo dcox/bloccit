@@ -9,6 +9,10 @@ class Api::V1::TopicsController < Api::V1::BaseController
 
   def show
     topic = Topic.find(params[:id])
-    render json: topic.to_json, status: 200
+    posts = topic.posts.all
+    topic = topic.to_json
+    posts = posts.to_json
+    topic = topic + posts
+    render json: topic, status: 200
   end
 end

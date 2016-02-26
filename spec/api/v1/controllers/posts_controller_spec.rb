@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::PostsController, type: :controller do 
   let(:my_user) { create(:user) }
   let(:post) { create(:post) }
+  let(:comment) { create(:comment, post: post, user: my_user) }
 
   context "unauthenticated user" do
 
@@ -55,7 +56,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
       end
 
       it "returns json content type" do
-        expect(response.body).to eq(post.to_json)
+        expect(response.body).to eq(post.to_json + [comment].to_json)
       end
     end
     
