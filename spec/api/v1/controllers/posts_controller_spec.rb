@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::PostsController, type: :controller do 
   let(:my_user) { create(:user) }
-  let(:post) { create(:post) }
-  let(:comment) { create(:comment, post: post, user: my_user) }
+  let!(:post) { create(:post) }
+  let!(:comment) { create(:comment, post: post, user: my_user) }
 
   context "unauthenticated user" do
 
