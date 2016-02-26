@@ -5,8 +5,10 @@ RSpec.describe Api::V1::PostsController, type: :controller do
   let(:my_topic) { create(:topic) }
 
   describe "POST create" do
-    before {post :create, post: { title: "A New Post", body: "This is a great post to talk about.", topic: my_topic } }
-
+    before do
+      @new_post = build(:post)
+      post :create, post: { title: @new_post.title, body: @new_post.body, topic: my_topic, user: my_user }
+    end
 
     it "returns http success" do
       expect(response).to have_http_status(:success)
