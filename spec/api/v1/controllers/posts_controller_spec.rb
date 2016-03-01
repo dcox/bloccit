@@ -7,7 +7,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
   describe "POST create" do
     before do
       @new_post = build(:post)
-      post :create, post: { title: @new_post.title, body: @new_post.body, topic: my_topic, user: my_user }
+      post :create, post: { title: @new_post.title, body: @new_post.body, topic_id: my_topic.id, user_id: my_user.id }
     end
 
     it "returns http success" do

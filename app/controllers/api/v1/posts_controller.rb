@@ -1,11 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
   def create
     post = Post.new(post_params)
-    # post = Post.new
-    # post.title = params[:post][:title]
-    # post.body = params[:post][:body]
-    # post.topic = params[:post][:topic]
-    # post.user = params[:post][:user]
 
     if post.valid?
       post.save!
