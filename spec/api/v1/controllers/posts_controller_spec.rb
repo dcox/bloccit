@@ -17,7 +17,7 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     it "returns content in json format" do
     end
 
-    it "creates a post with the correct attributes" do 
+    it "creates a post with the correct attributes" do
     end
 
   end
@@ -30,17 +30,17 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     it "returns content in json format" do
     end
 
-    it "updates the post with the correct attributes" do 
+    it "updates the post with the correct attributes" do
     end
 
   end
 
   describe "DELETE destroy" do
 
-    it "returns http success" do 
+    it "returns http success" do
     end
 
-    it "returns the correct json confirmation message" do 
+    it "returns the correct json confirmation message" do
     end
 
     it "deletes the post" do
